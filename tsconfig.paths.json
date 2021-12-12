@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@server/*": ["src/server/*"],
+      "@db/*": ["src/orm/*"],
+      "@dtos": ["src/dtos"],
+      "@logger": ["src/logger"],
+      "@services": ["src/services"],
+      "@environment": ["src/environment"],
+      "@types": ["src/types"]
+    }
+  }
+}

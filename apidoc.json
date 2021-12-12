@@ -1,0 +1,325 @@
+{
+  "components": {
+    "schemas": {
+      "NewAuthorDto": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "surnames": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "surnames",
+          "gender"
+        ]
+      },
+      "AuthorDto": {
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "surnames": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "surnames",
+          "gender"
+        ]
+      },
+      "NewBookDto": {
+        "properties": {
+          "isbn": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "theme": {
+            "type": "string"
+          },
+          "year": {
+            "type": "number"
+          },
+          "author": {
+            "$ref": "#/components/schemas/AuthorDto"
+          }
+        },
+        "type": "object",
+        "required": [
+          "isbn",
+          "title",
+          "theme",
+          "year",
+          "author"
+        ]
+      },
+      "BookDto": {
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "isbn": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "theme": {
+            "type": "string"
+          },
+          "year": {
+            "type": "number"
+          },
+          "author": {
+            "$ref": "#/components/schemas/AuthorDto"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "isbn",
+          "title",
+          "theme",
+          "year",
+          "author"
+        ]
+      },
+      "AuthorParams": {
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id"
+        ]
+      },
+      "BookParams": {
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Books API",
+    "version": "1.0.0",
+    "description": "Books API"
+  },
+  "openapi": "3.0.1",
+  "paths": {
+    "/api/v1/authors": {
+      "get": {
+        "operationId": "AuthorController.getAll",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AuthorDto"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get all",
+        "tags": [
+          "Author"
+        ]
+      },
+      "post": {
+        "operationId": "AuthorController.signup",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewAuthorDto"
+              }
+            }
+          },
+          "description": "NewAuthorDto",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthorDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Signup",
+        "tags": [
+          "Author"
+        ]
+      }
+    },
+    "/api/v1/authors/{id}": {
+      "get": {
+        "operationId": "AuthorController.getOne",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthorDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get one",
+        "tags": [
+          "Author"
+        ]
+      }
+    },
+    "/api/v1/books": {
+      "get": {
+        "operationId": "BookController.getAll",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/BookDto"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get all",
+        "tags": [
+          "Book"
+        ]
+      },
+      "post": {
+        "operationId": "BookController.signup",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewBookDto"
+              }
+            }
+          },
+          "description": "NewBookDto",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Signup",
+        "tags": [
+          "Book"
+        ]
+      }
+    },
+    "/api/v1/books/{id}": {
+      "get": {
+        "operationId": "BookController.getOne",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get one",
+        "tags": [
+          "Book"
+        ]
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "API version 1"
+    }
+  ],
+  "security": [
+    {
+      "OpenId": [
+        "profile"
+      ]
+    }
+  ]
+}

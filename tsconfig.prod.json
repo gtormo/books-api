@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "dist",
+    "types": ["reflect-metadata"]
+  },
+  "exclude": ["tests/**/*"]
+}

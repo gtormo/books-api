@@ -1,0 +1,58 @@
+name: books-api
+
+on:
+  push:
+    branches:
+      - main
+      - development
+    tags:
+      - '*'
+  pull_request:
+    branches:
+      - main
+      - development
+  workflow_dispatch:
+    branches:
+      - main
+      - development
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      NODE_ENV: dev
+      SERVER_PORT: 3000
+      LOGGER_LEVEL: off
+      DATABASE_HOST: 0.0.0.0
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: admin
+      DATABASE_PASSWORD: admin
+      DATABASE_NAME: books
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js 16.13.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.13.x
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Install NPM packages
+        run: npm ci
+      - name: Run linter
+        run: npm run lint
+      - name: Test infra up
+        run: npm run infra_test:up
+      - name: Run tests
+        run: npm run test:ci
+      - name: Test infra down
+        run: npm run infra_test:down
