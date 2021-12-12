@@ -1,5 +1,5 @@
 {
-  "name": "authentication-service",
+  "name": "books-api",
   "version": "1.0.0",
   "description": "",
   "main": "src/app.ts",
@@ -37,14 +37,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gtormo/authentication-service.git"
+    "url": "git+https://github.com/gtormo/books-api.git"
   },
   "author": "gtormo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gtormo/authentication-service/issues"
+    "url": "https://github.com/gtormo/books-api/issues"
   },
-  "homepage": "https://github.com/gtormo/authentication-service#readme",
+  "homepage": "https://github.com/gtormo/books-api#readme",
   "dependencies": {
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
