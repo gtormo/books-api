@@ -10,7 +10,7 @@ useContainer(Container);
 @Service()
 export default class Db {
     @Inject(LOGGER)
-    logger: Logger;
+      logger: Logger;
 
     #connection: Connection;
 

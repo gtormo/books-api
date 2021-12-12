@@ -18,62 +18,62 @@ useContainer(Container);
 
 @Service()
 export default class Server {
-    logger: Logger;
-    environment: Environment;
+  logger: Logger;
+  environment: Environment;
 
-    private port: number;
-    private app: Express;
+  private port: number;
+  private app: Express;
 
-    constructor (
+  constructor (
       @Inject(LOGGER) logger: Logger,
       @Inject() environment: Environment
-    ) {
-      this.logger = logger;
-      this.environment = environment;
-      this.app = express();
-      this.port = this.environment.envs.server.port;
+  ) {
+    this.logger = logger;
+    this.environment = environment;
+    this.app = express();
+    this.port = this.environment.envs.server.port;
 
-      this.app.use(helmet());
-      this.app.use(urlencoded({ extended: true }));
-      this.app.use(json());
+    this.app.use(helmet());
+    this.app.use(urlencoded({ extended: true }));
+    this.app.use(json());
 
-      const routingControllersOptions: RoutingControllersOptions = {
-        cors: true,
-        validation: true,
-        defaultErrorHandler: false,
-        controllers: [join(__dirname, '../controllers/*.controller{.ts,.js}')],
-        middlewares: [CustomErrorHandler]
-      };
+    const routingControllersOptions: RoutingControllersOptions = {
+      cors: true,
+      validation: true,
+      defaultErrorHandler: false,
+      controllers: [join(__dirname, '../controllers/*.controller{.ts,.js}')],
+      middlewares: [CustomErrorHandler]
+    };
 
-      useExpressServer(this.app, routingControllersOptions);
-      const spec = getApiDoc(routingControllersOptions);
+    useExpressServer(this.app, routingControllersOptions);
+    const spec = getApiDoc(routingControllersOptions);
 
-      if (process.env.NODE_ENV === 'development') {
-        try {
-          writeFileSync(join(process.cwd(), 'apidoc.json'), JSON.stringify(spec, null, 2));
-        } catch (error: any) {
-          this.logger.error(`Error saving openapi spec: ${error}`);
-        }
+    if (process.env.NODE_ENV === 'development') {
+      try {
+        writeFileSync(join(process.cwd(), 'apidoc.json'), JSON.stringify(spec, null, 2));
+      } catch (error: any) {
+        this.logger.error(`Error saving openapi spec: ${error}`);
       }
-
-      this.app.use('/__/apidoc', swaggerUiServe, swaggerUiSetup(spec));
     }
 
-    getNativeExpressApp = (): Express => this.app;
+    this.app.use('/__/apidoc', swaggerUiServe, swaggerUiSetup(spec));
+  }
 
-    #listen (): Promise<void> {
-      return new Promise((resolve, reject) => {
-        try {
-          this.app.listen(this.port, () => {
-            this.logger.info(`Server listening at port ${this.port}.`);
-            return resolve();
-          });
-        } catch (error: any) {
-          this.logger.error(`Error listening at port ${this.port}: ${error}`);
-          return reject(error);
-        }
-      });
-    }
+  getNativeExpressApp = (): Express => this.app;
 
-    start = async (): Promise<void> => await this.#listen();
+  #listen (): Promise<void> {
+    return new Promise((resolve, reject) => {
+      try {
+        this.app.listen(this.port, () => {
+          this.logger.info(`Server listening at port ${this.port}.`);
+          return resolve();
+        });
+      } catch (error: any) {
+        this.logger.error(`Error listening at port ${this.port}: ${error}`);
+        return reject(error);
+      }
+    });
+  }
+
+  start = async (): Promise<void> => await this.#listen();
 }

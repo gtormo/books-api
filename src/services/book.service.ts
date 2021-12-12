@@ -9,10 +9,10 @@ import { AuthorService } from '@services';
 @Service()
 export default class BookService {
  @InjectRepository(Book)
- bookRepository: Repository<Book>;
+   bookRepository: Repository<Book>;
 
  @Inject()
- authorService: AuthorService
+   authorService: AuthorService;
 
  async findAll (): Promise<BookDto[]> {
    return this.bookRepository.find();

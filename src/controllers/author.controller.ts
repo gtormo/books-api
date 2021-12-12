@@ -9,14 +9,14 @@ import { AuthorService } from '@services';
 
 class AuthorParams {
   @IsUUID()
-  id: string;
+    id: string;
 }
 
 @Service()
 @JsonController('/api/v1')
 export class AuthorController {
   @Inject()
-  authorService: AuthorService;
+    authorService: AuthorService;
 
   @Get('/authors')
   @ResponseSchema(AuthorDto, { isArray: true })

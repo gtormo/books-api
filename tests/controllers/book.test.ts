@@ -4,8 +4,6 @@ import supertest, { SuperTest, Test } from 'supertest';
 import { Connection, createConnection, useContainer } from 'typeorm';
 import { Container } from 'typeorm-typedi-extensions';
 
-import config from '@db/config';
-import { Book } from '@db/entity';
 import { BookDto } from '@dtos';
 import Environment from '@environment';
 import Server from '@server/index';

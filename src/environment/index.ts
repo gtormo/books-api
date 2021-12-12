@@ -20,7 +20,7 @@ export default class Environment {
       migrationsDir: 'src/orm/migration'
     },
     synchronize: true
-  }
+  };
 
   private dbProductionConfig = {
     migrationsRun: true,
@@ -34,7 +34,7 @@ export default class Environment {
     migrationsRun: false,
     dropSchema: true,
     ...this.dbBaseConfig
-  }
+  };
 
   private seedConfig = {
     seeds: [join(__dirname, '/seeder/**/*.seeder{.ts,.js}')],
@@ -42,7 +42,7 @@ export default class Environment {
     migrationsRun: true,
     dropSchema: false,
     ...this.dbBaseConfig
-  }
+  };
 
   public envs: IEnvironment = {
     server: {
@@ -53,5 +53,5 @@ export default class Environment {
       : process.env.NODE_ENV === 'seed'
         ? this.seedConfig
         : this.dbProductionConfig
-  }
+  };
 }

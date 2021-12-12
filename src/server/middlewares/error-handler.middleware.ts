@@ -9,7 +9,7 @@ import { LOGGER } from '@logger';
 @Middleware({ type: 'after' })
 export class CustomErrorHandler implements ExpressErrorMiddlewareInterface {
     @Inject(LOGGER)
-    logger: Logger;
+      logger: Logger;
 
     error (err: any, _req: Request, res: express.Response): void {
       this.logger.error(err);

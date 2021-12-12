@@ -8,7 +8,7 @@ import { AuthorDto, NewAuthorDto } from '@dtos';
 @Service()
 export default class AuthorService {
  @InjectRepository(Author)
- authorRepository: Repository<Author>;
+   authorRepository: Repository<Author>;
 
  async findAll (): Promise<AuthorDto[]> {
    return this.authorRepository.find();

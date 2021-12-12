@@ -13,16 +13,16 @@ dotenv.config();
 @Service()
 class App {
   @Inject()
-  environment: Environment;
+    environment: Environment;
 
   @Inject()
-  server: Server;
+    server: Server;
 
   @Inject()
-  db: Db;
+    db: Db;
 
   @Inject(LOGGER)
-  logger: Logger;
+    logger: Logger;
 
   async start (): Promise<void> {
     await this.db.start(this.environment.envs.database);

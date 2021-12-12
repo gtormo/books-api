@@ -6,28 +6,28 @@ import { AuthorDto } from './author.dto';
 export class NewBookDto {
     @Expose()
     @IsUUID()
-    isbn: string;
+      isbn: string;
 
     @Expose()
     @IsString()
-    title: string;
+      title: string;
 
     @Expose()
     @IsString()
-    theme: string;
+      theme: string;
 
     @Expose()
     @IsNumber()
-    year: number;
+      year: number;
 
     @Expose()
     @ValidateNested()
     @Type(() => AuthorDto)
-    author: AuthorDto
+      author: AuthorDto;
 }
 
 export class BookDto extends NewBookDto {
     @Expose()
     @IsUUID()
-    id: string;
+      id: string;
 }

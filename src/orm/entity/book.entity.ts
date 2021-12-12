@@ -6,26 +6,26 @@ import { Author } from './author.entity';
 @Unique(['isbn'])
 export class Book {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+    id: string;
 
   @Column()
-  isbn: string;
+    isbn: string;
 
   @Column()
-  title: string;
+    title: string;
 
   @Column()
-  theme: string;
+    theme: string;
 
   @ManyToOne(() => Author, { nullable: false, onDelete: 'RESTRICT', eager: true })
-  author: Author;
+    author: Author;
 
   @Column()
-  year: number;
+    year: number;
 
   @CreateDateColumn()
-  createdDate: Date;
+    createdDate: Date;
 
   @UpdateDateColumn()
-  updatedDate: Date;
+    updatedDate: Date;
 }

@@ -9,14 +9,14 @@ import { BookService } from '@services';
 
 class BookParams {
   @IsUUID()
-  id: string;
+    id: string;
 }
 
 @Service()
 @JsonController('/api/v1')
 export class BookController {
   @Inject()
-  bookService: BookService;
+    bookService: BookService;
 
   @Get('/books')
   @ResponseSchema(BookDto, { isArray: true })

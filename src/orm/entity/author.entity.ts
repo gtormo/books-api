@@ -3,20 +3,20 @@ import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateCol
 @Entity()
 export class Author {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+    id: string;
 
   @Column()
-  name: string;
+    name: string;
 
   @Column()
-  surnames: string;
+    surnames: string;
 
   @Column()
-  gender: string;
+    gender: string;
 
   @CreateDateColumn()
-  createdDate: Date;
+    createdDate: Date;
 
   @UpdateDateColumn()
-  updatedDate: Date;
+    updatedDate: Date;
 }
