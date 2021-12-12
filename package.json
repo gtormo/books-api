@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/app.ts",
   "scripts": {
+    "postinstall": "npx husky install",
     "lint": "eslint --ext .ts .",
     "lint:fix": "eslint --fix --ext .ts .",
     "dev": "NODE_ENV=development nodemon --watch 'src/**' --ext 'ts,json' --ignore 'src/**/*.spec.ts' --exec 'ts-node -r tsconfig-paths/register src/app.ts'",
