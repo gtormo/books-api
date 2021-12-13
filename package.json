@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/app.ts",
   "scripts": {
+    "preinstall": "./nvm-use.sh",
     "postinstall": "npx husky install",
     "lint": "eslint --ext .ts .",
     "lint:fix": "eslint --fix --ext .ts .",
