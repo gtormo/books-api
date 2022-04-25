@@ -2,7 +2,7 @@
 
 <img src="https://img.shields.io/badge/Version-1.0.0-blue" /> <img src="https://img.shields.io/badge/TypeScript-4.5.3-blue" /> <img src="https://img.shields.io/badge/Jest-27.4.4-green" /> <img src="https://img.shields.io/badge/Docker-20.10.2-blue" /> <img src="https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg" />
 
-[![GitHub Actions CI](https://github.com/microsoft/TypeScript/workflows/CI/badge.svg)](https://github.com/gtormo/books-api/actions?query=books-api%3ACI)
+[![books-api](https://github.com/gtormo/books-api/actions/workflows/books-api.yml/badge.svg)](https://github.com/gtormo/books-api/actions/workflows/books-api.yml)
 
 # Guide for developers
 
